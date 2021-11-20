@@ -33,7 +33,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @auth
+                            <li>
+                                <a href="{{ route('masjid.index', []) }}" class="nav-link">Data Masjid</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('masjid.laporan', []) }}" class="nav-link">Laporan Masjid</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
