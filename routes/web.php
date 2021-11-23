@@ -19,8 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('masjid/laporan', 'MasjidController@laporan')->name('masjid.laporan');
-Route::resource('user/masjid', MasjidController::class);
+Route::prefix('user')->middleware(['auth'])->group(function () {
+    Route::resource('masjid', MasjidController::class);
+});
+
 //GET       URL: masjid              route : masjid.index            method: index
 //GET       URL: masjid/create       route : masjid.create           method: create
 //POST,     URL: masjid              route : masjid.store            method: store

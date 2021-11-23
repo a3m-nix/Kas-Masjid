@@ -36,7 +36,7 @@ class MasjidController extends Controller
 
     public function edit($id)
     {
-        $data['objek'] = Masjid::findOrFail($id);
+        $data['objek'] = Masjid::DataUser()->where('id', $id)->firstOrFail();
         $data['method'] = 'PUT';
         $data['route'] = ['masjid.update', $id];
         $data['namaTombol'] = 'UPDATE';
@@ -45,11 +45,19 @@ class MasjidController extends Controller
 
     public function update(MasjidUpdateRequest $request, $id)
     {
-        Masjid::where('id', $id)->update([
+        Masjid::DataUser()->where('id', $id)->update([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
         ]);
         flash('Data sudah diubah');
         return redirect()->route('masjid.index');
+    }
+
+    public function destroy($id)
+    {
+        $masjid = \App\Masjid::DataUser()->where('id', $id)->firstOrFail();
+        $masjid->delete();
+        flash('Data berhasil dihapus')->success();
+        return back();
     }
 }
