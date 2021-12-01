@@ -3,10 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">DATA MASJID YANG ANDA URUS</div>
-
                 <div class="card-body">
                     <a href="{{ route('masjid.create', []) }}" class="btn btn-info mb-2">
                         <i class="fas fa-file"></i> Tambah Data</a>
@@ -27,9 +26,11 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->alamat }}</td>
                                 <td>{{ $item->created_at->format('d F Y') }}</td>
-                                <td>
+                                <td class="align-right">
                                     {!! Form::open(['route' => ['masjid.destroy', $item->id],'method' => 'DELETE','onsubmit' => "return confirm('Anda Yakin ingin menghapus data ini ?')"]) !!}
-                                    <a href="{{ route('masjid.edit', $item->id) }}" class="btn btn-info">
+                                    <a href="{{ route('masjid.show', $item->id) }}" class="btn btn-primary">
+                                        <i class="fas fa-edit"></i> Detail </a>
+                                    <a href="{{ route('masjid.edit', $item->id) }}" class="btn btn-info ml-2">
                                         <i class="fas fa-edit"></i> Edit</a>
                                     <button type="submit" class="btn btn-danger ml-2"><i class="fa fa-trash"></i> Delete</button>
                                     {!! Form::close() !!}
@@ -38,7 +39,7 @@
                             @empty
                             <tr>
                                 <td colspan="4">Data tidak ada</td>
-                            </tr>
+                            </tr>                            
                             @endforelse
                         </tbody>
                     </table>

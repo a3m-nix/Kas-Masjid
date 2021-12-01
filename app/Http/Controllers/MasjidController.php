@@ -60,4 +60,11 @@ class MasjidController extends Controller
         flash('Data berhasil dihapus')->success();
         return back();
     }
+
+    public function show($id)
+    {
+        $data['masjid'] = Masjid::DataUser()->where('id', $id)->firstOrFail();
+        session(['masjid_id' => $id]);
+        return view('masjid_show', $data);
+    }
 }

@@ -62,6 +62,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="{{ route('gantipassword.create', []) }}" class="dropdown-item">
+                                    Ganti Password
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -83,5 +86,13 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
+    <script>
+        $(document).ready(function ($) {
+            $('.format-rupiah').mask("#.##0", {reverse: true});
+        });
+    </script>
 </body>
 </html>

@@ -21,6 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('user')->middleware(['auth'])->group(function () {
     Route::resource('masjid', MasjidController::class);
+    Route::resource('gantipassword', GantiPasswordController::class);
+    Route::resource('transaksi', TransaksiController::class);
 });
 
 //GET       URL: masjid              route : masjid.index            method: index
