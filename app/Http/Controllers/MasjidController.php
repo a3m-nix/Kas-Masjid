@@ -63,8 +63,11 @@ class MasjidController extends Controller
 
     public function show($id)
     {
-        $data['masjid'] = Masjid::DataUser()->where('id', $id)->firstOrFail();
+        $masjid = Masjid::DataUser()->where('id', $id)->firstOrFail();
+        session(['masjid' => $masjid]);
         session(['masjid_id' => $id]);
+        $data['masjid'] = $masjid;
+        $data['transaksi'] = $masjid->transaksi()->latest()->paginate(20);
         return view('masjid_show', $data);
     }
 }

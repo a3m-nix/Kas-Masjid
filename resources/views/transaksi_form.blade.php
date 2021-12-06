@@ -1,14 +1,13 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">TRANSAKSI KEUANGAN MASJID</div>
+                <div class="card-header">TRANSAKSI KEUANGAN MASJID {{ strtoupper(session('masjid')->nama) }}</div>
 
                 <div class="card-body">
-                    {!! Form::model($objek, ['route' => $route, 'method' => $method]) !!}
+                    {!! Form::model($objek, ['route' => $route, 'method' => $method,'id' => 'myForm']) !!}
                     <div class="form-group">
                         <label for="keterangan">Nama Transaksi</label>
                         {!! Form::text('keterangan', null, ['class' => 'form-control','placeholder']) !!}
